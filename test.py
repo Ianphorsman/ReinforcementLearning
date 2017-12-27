@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from functools import reduce
-from frozen_lake import FrozenLake
+from basic_q_learning_agent import BasicQLearningAgent
 
 
 class GymTester(object):
@@ -25,10 +25,17 @@ class GymTester(object):
 
     @reward_visualizer(instances=20)
     def frozen_lake(self, i):
-        qrl = FrozenLake(learning_rate=0.97 ** i, discount=0.99 ** i, iterations=1000)
+        qrl = BasicQLearningAgent(env_name='FrozenLake-v0', learning_rate=0.97 ** i, discount=0.99 ** i, iterations=1000)
         qrl.run()
         num_rewards = len(qrl.rewards)
         return self.rolling_max(qrl.rewards, window=num_rewards // 100, strides=num_rewards // 50)
+
+    @reward_visualizer(instances=10)
+    def mountain_car(self, i):
+        qrl = BasicQLearningAgent(env_name='MountainCar-v0', learning_rate=0.97 ** i, discount=0.99 ** i, iterations=1000)
+        qrl.run()
+        num_rewards = len(qrl.rewards)
+        return self.rolling_mean(qrl.rewards, window=num_rewards // 100, strides=num_rewards // 50)
 
     def rolling_mean(self, arr, window=2, strides=5):
         window = min(window, strides)

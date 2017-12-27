@@ -5,11 +5,11 @@ import seaborn as sns
 from functools import reduce
 import time
 
-class FrozenLake(object):
+class BasicQLearningAgent(object):
 
-    def __init__(self, learning_rate=0.8, discount=0.95, iterations=1000):
+    def __init__(self, env_name='FrozenLake-v0', learning_rate=0.8, discount=0.95, iterations=1000):
         # game environment
-        self.env = gym.make('FrozenLake-v0')
+        self.env = gym.make(env_name)
 
         # Q table placeholder initialized with zeros
         self.q_table = np.zeros([self.env.observation_space.n, self.env.action_space.n])
