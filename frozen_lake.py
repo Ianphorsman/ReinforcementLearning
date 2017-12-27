@@ -5,7 +5,7 @@ import seaborn as sns
 from functools import reduce
 import time
 
-class BasicQLearningAgent(object):
+class FrozenLake(object):
 
     def __init__(self, env_name='FrozenLake-v0', learning_rate=0.8, discount=0.95, iterations=1000):
         # game environment
