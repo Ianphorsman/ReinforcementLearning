@@ -23,7 +23,6 @@ class FrozenLake(object):
 
         # track rewards
         self.rewards = []
-        self.cur_reward = None
 
         # placeholder to store current environment state
         self.state = None
